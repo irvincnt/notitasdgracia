@@ -13,10 +13,10 @@ export default async function Home() {
       <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
         <div className="mb-16">
           <h1 className="text-5xl sm:text-6xl font-bold bg-linear-to-r from-rose-500 to-purple-600 bg-clip-text text-transparent mb-4 font-playfair leading-tight">
-            Nuestro Blog
+          Reflexiones Destacadas
           </h1>
           <p className="text-lg text-slate-600 font-light">
-            Historias sobre arte, fotografía y creatividad
+          Descubre las reflexiones más inspiradoras para nutrir tu alma y fortalecer tu fe
           </p>
         </div>
 
