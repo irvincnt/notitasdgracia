@@ -1,4 +1,5 @@
 import MdxLayout from "@/app/components/mdx-layout";
+import { useMDXComponents } from "@/app/mdx-components";
 import { getAllBlogPosts } from "@/lib/blog";
 
 export const generateStaticParams = async () => {
@@ -42,10 +43,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const postModule = await import(`@/content/blog/${slug}.mdx`);
   const PostContent = postModule.default;
   const metadata = postModule.metadata;
+  const mdxComponents = useMDXComponents();
 
   return (
     <MdxLayout metadata={metadata}>
-      <PostContent />
+      <PostContent components={mdxComponents} />
     </MdxLayout>
   );
 }
