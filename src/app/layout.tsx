@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Lora, Playfair_Display } from "next/font/google";
 import Link from "next/link";
+import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -60,7 +61,14 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="es">
+    <html lang="es" suppressHydrationWarning>
+      <head>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `(function(){try{var t=localStorage.getItem("theme");if(t==="dark"||(!t&&window.matchMedia("(prefers-color-scheme:dark)").matches)){document.documentElement.classList.add("dark")}}catch(e){}})()`,
+          }}
+        />
+      </head>
       <body
         className={`${playfair.variable} ${lora.variable} antialiased bg-background`}
       >
@@ -74,19 +82,20 @@ export default function RootLayout({
               >
                 Notitas <span className="text-gold">de Gracia</span>
               </Link>
-              <div className="flex items-center gap-1 sm:gap-6">
+              <div className="flex items-center gap-1 sm:gap-5">
                 <Link
                   href="/"
-                  className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors"
+                  className="px-3 py-2 text-sm text-muted hover:text-foreground transition-colors"
                 >
                   Inicio
                 </Link>
                 <Link
                   href="/blog"
-                  className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors"
+                  className="px-3 py-2 text-sm text-muted hover:text-foreground transition-colors"
                 >
                   Reflexiones
                 </Link>
+                <ThemeToggle />
               </div>
             </div>
           </nav>
@@ -95,15 +104,15 @@ export default function RootLayout({
         <main className="min-h-screen">{children}</main>
 
         {/* Footer */}
-        <footer className="bg-foreground text-white/70 mt-28">
+        <footer className="bg-cream border-t border-border mt-28">
           <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
             {/* Footer Grid */}
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 pt-14 pb-14">
               <div>
-                <h4 className="font-playfair text-white font-bold text-lg mb-4">
+                <h4 className="font-playfair text-foreground font-bold text-lg mb-4">
                   Notitas <span className="text-gold">de Gracia</span>
                 </h4>
-                <p className="text-white/50 text-sm leading-relaxed">
+                <p className="text-muted text-sm leading-relaxed">
                   Devocionales y reflexiones para fortalecer tu fe, nutrir tu
                   alma y recordarte que la gracia de Dios es nueva cada mañana.
                 </p>
@@ -116,7 +125,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/"
-                      className="text-white/50 hover:text-white transition-colors text-sm"
+                      className="text-muted hover:text-foreground transition-colors text-sm"
                     >
                       Inicio
                     </Link>
@@ -124,7 +133,7 @@ export default function RootLayout({
                   <li>
                     <Link
                       href="/blog"
-                      className="text-white/50 hover:text-white transition-colors text-sm"
+                      className="text-muted hover:text-foreground transition-colors text-sm"
                     >
                       Reflexiones
                     </Link>
@@ -135,11 +144,11 @@ export default function RootLayout({
                 <h4 className="text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-5">
                   Versículo del día
                 </h4>
-                <blockquote className="text-white/50 text-sm italic leading-relaxed border-l border-gold pl-4">
+                <blockquote className="text-muted text-sm italic leading-relaxed border-l border-gold pl-4">
                   &ldquo;Porque por gracia ustedes han sido salvados mediante la
                   fe; esto no procede de ustedes, sino que es el regalo de
                   Dios.&rdquo;
-                  <span className="block text-white/30 mt-2 not-italic text-xs">
+                  <span className="block text-muted/60 mt-2 not-italic text-xs">
                     — Efesios 2:8
                   </span>
                 </blockquote>
@@ -147,8 +156,8 @@ export default function RootLayout({
             </div>
 
             {/* Copyright */}
-            <div className="border-t border-white/10 py-6 text-center">
-              <p className="text-white/30 text-xs tracking-wide">
+            <div className="border-t border-border py-6 text-center">
+              <p className="text-muted/60 text-xs tracking-wide">
                 © {new Date().getFullYear()} Notitas de Gracia. Hecho con fe y
                 amor.
               </p>

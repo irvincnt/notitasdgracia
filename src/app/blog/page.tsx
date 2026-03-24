@@ -26,7 +26,7 @@ export default async function BlogPage() {
 
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
         {posts.length === 0 ? (
-          <div className="text-center py-24 bg-white rounded-2xl border border-border">
+          <div className="text-center py-24 bg-surface rounded-2xl border border-border">
             <div className="w-8 h-px bg-gold mx-auto mb-6" />
             <p className="text-foreground/50">
               Pronto compartiremos nuevas reflexiones.
@@ -38,7 +38,7 @@ export default async function BlogPage() {
             {featuredPost && (
               <Link
                 href={`/blog/${featuredPost.slug}`}
-                className="group block bg-white rounded-2xl overflow-hidden border border-border hover:border-gold-light hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 mb-14"
+                className="group block bg-surface rounded-2xl overflow-hidden border border-border hover:border-gold-light hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 mb-14"
               >
                 <div className="grid md:grid-cols-5">
                   {featuredPost.image && (
