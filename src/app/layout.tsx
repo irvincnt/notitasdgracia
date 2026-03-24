@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Lora } from "next/font/google";
+import { Lora, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import "./globals.css";
 
@@ -16,10 +16,42 @@ const lora = Lora({
   style: ["normal", "italic"],
 });
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+
 export const metadata: Metadata = {
+  metadataBase: new URL(siteUrl),
   title: "Notitas de Gracia - Devocionales de Fe",
   description:
     "Reflexiones diarias y devocionales para nutrir tu alma y fortalecer tu fe. Encuentra inspiración, esperanza y gracia en cada palabra.",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.png", type: "image/png" },
+    ],
+    apple: [{ url: "/apple-icon.png", sizes: "180x180", type: "image/png" }],
+  },
+  openGraph: {
+    title: "Notitas de Gracia - Devocionales de Fe",
+    description:
+      "Reflexiones diarias y devocionales para nutrir tu alma y fortalecer tu fe. Encuentra inspiración, esperanza y gracia en cada palabra.",
+    type: "website",
+    locale: "es_MX",
+    images: [
+      {
+        url: "/notitas-de-gracia-share.jpeg",
+        width: 1024,
+        height: 1024,
+        alt: "Notitas de Gracia",
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Notitas de Gracia - Devocionales de Fe",
+    description:
+      "Reflexiones diarias y devocionales para nutrir tu alma y fortalecer tu fe. Encuentra inspiración, esperanza y gracia en cada palabra.",
+    images: ["/notitas-de-gracia-share.jpeg"],
+  },
 };
 
 export default function RootLayout({
