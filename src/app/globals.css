@@ -2,21 +2,44 @@
 @plugin "@tailwindcss/typography";
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --background: #fffaf5;
+  --foreground: #1c1917;
+  --gold: #d4a574;
+  --gold-dark: #b8956a;
+  --gold-light: #e8d5c4;
+  --rose-blush: #fecdd3;
+  --rose-deep: #e11d48;
+  --cream: #fff7ed;
+  --border: #e8ddd4;
 }
 
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
+  --color-gold: var(--gold);
+  --color-gold-dark: var(--gold-dark);
+  --color-gold-light: var(--gold-light);
+  --color-rose-blush: var(--rose-blush);
+  --color-rose-deep: var(--rose-deep);
+  --color-cream: var(--cream);
+  --color-border: var(--border);
   --font-playfair: var(--font-playfair);
-  --font-inter: var(--font-inter);
+  --font-lora: var(--font-lora);
 }
 
 body {
   background: var(--background);
   color: var(--foreground);
-  font-family: var(--font-inter), system-ui, -apple-system, sans-serif;
+  font-family: var(--font-lora), Georgia, "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+::selection {
+  background-color: #fecdd3;
+  color: #1c1917;
 }
