@@ -13,6 +13,8 @@ interface MdxLayoutProps {
 }
 
 export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
+  const hasHeroImage = Boolean(metadata?.image);
+
   return (
     <article className="min-h-screen">
       {/* Back Navigation */}
@@ -43,8 +45,12 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
       </div>
 
       {/* Article Header */}
-      <header className="bg-cream pb-10 sm:pb-14">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 text-center">
+      <header className="relative bg-cream">
+        <div
+          className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 text-center ${
+            hasHeroImage ? "pb-10 sm:pb-12" : "pb-10 sm:pb-14"
+          }`}
+        >
           {/* Meta */}
           <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
             {metadata?.date && (
@@ -80,25 +86,29 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
 
           <div className="w-12 h-px bg-gold mx-auto mt-8" />
         </div>
+
+        {/* Hero Image */}
+        {metadata?.image && (
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-border/80 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.5)]">
+              <Image
+                src={metadata.image}
+                alt={metadata.title || "Imagen del artículo"}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        )}
       </header>
 
-      {/* Hero Image */}
-      {metadata?.image && (
-        <div className="max-w-[52rem] mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
-          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-border shadow-lg">
-            <Image
-              src={metadata.image}
-              alt={metadata.title || "Imagen del artículo"}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      )}
-
       {/* Article Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
+      <div
+        className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28 ${
+          hasHeroImage ? "pt-12 sm:pt-14" : ""
+        }`}
+      >
         <div
           className="article-prose prose prose-lg max-w-none
           prose-headings:font-playfair prose-headings:font-bold prose-headings:text-foreground
