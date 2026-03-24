@@ -25,8 +25,8 @@ export default async function Home() {
             Devocional semanal
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold leading-[1.15] mb-6 max-w-3xl mx-auto text-foreground">
-            Pequeñas notas{" "}
-            <em className="text-gold not-italic font-playfair">de gracia</em>
+            Pequeñas Notas{" "}
+            <em className="text-gold not-italic font-playfair">de Gracia</em>
             <br />
             para tu alma
           </h1>
@@ -56,9 +56,6 @@ export default async function Home() {
       <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
         <div className="max-w-2xl mx-auto text-center">
           <div className="w-10 h-px bg-gold mx-auto mb-8" />
-          <p className="text-foreground/80 text-2xl sm:text-3xl font-playfair leading-snug mb-8">
-            Hola <span className="text-rose-blush">&#x1F90D;</span>
-          </p>
           <p className="text-foreground/80 font-playfair text-xl sm:text-2xl leading-relaxed mb-2">
             Bienvenido(a) a{" "}
             <span className="text-gold font-semibold">Notitas de Gracia</span>.
@@ -70,10 +67,12 @@ export default async function Home() {
               recordatorios del amor de Dios en medio de la vida diaria.
             </p>
             <p>
-              A veces todo puede sentirse pesado… la rutina, las
-              preocupaciones, el cansancio. Pero aun en medio de todo, siempre
-              hay <em className="text-gold not-italic font-medium">gracia disponible</em> para
-              nosotros.
+              A veces todo puede sentirse pesado… la rutina, las preocupaciones,
+              el cansancio. Pero aun en medio de todo, siempre hay{" "}
+              <em className="text-gold not-italic font-medium">
+                gracia disponible
+              </em>{" "}
+              para nosotros.
             </p>
             <p>
               Mi oración es que cada notita fortalezca tu fe, traiga paz a tu
