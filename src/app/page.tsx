@@ -127,12 +127,14 @@ export default async function Home() {
                 className="group"
               >
                 {post.image && (
-                  <div className="relative h-52 sm:h-56 rounded-xl overflow-hidden mb-5 border border-border group-hover:border-gold-light transition-colors">
+                  <div className="rounded-xl overflow-hidden mb-5 border border-border group-hover:border-gold-light transition-colors">
                     <Image
                       src={post.image}
                       alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                      width={1200}
+                      height={800}
+                      sizes="(min-width: 1024px) 33vw, (min-width: 640px) 50vw, 100vw"
+                      className="w-full h-auto block group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                 )}
