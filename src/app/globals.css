@@ -11,6 +11,22 @@
   --rose-deep: #e11d48;
   --cream: #fff7ed;
   --border: #e8ddd4;
+  --surface: #ffffff;
+  --muted: #78716c;
+}
+
+.dark {
+  --background: #141211;
+  --foreground: #e7e5e4;
+  --gold: #d4a574;
+  --gold-dark: #e8c4a0;
+  --gold-light: #3d3028;
+  --rose-blush: #4a2030;
+  --rose-deep: #fb7185;
+  --cream: #1c1a18;
+  --border: #2e2a26;
+  --surface: #1c1a18;
+  --muted: #a8a29e;
 }
 
 @theme inline {
@@ -23,6 +39,8 @@
   --color-rose-deep: var(--rose-deep);
   --color-cream: var(--cream);
   --color-border: var(--border);
+  --color-surface: var(--surface);
+  --color-muted: var(--muted);
   --font-playfair: var(--font-playfair);
   --font-lora: var(--font-lora);
 }
@@ -33,6 +51,7 @@ body {
   font-family: var(--font-lora), Georgia, "Times New Roman", serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 html {
@@ -40,6 +59,6 @@ html {
 }
 
 ::selection {
-  background-color: #fecdd3;
-  color: #1c1917;
+  background-color: var(--rose-blush);
+  color: var(--foreground);
 }

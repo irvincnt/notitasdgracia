@@ -10,15 +10,14 @@ export default async function Home() {
   return (
     <div className="min-h-screen">
       {/* Hero Section */}
-      <section className="relative overflow-hidden bg-gradient-to-b from-cream via-[#FFF1F2] to-cream">
-        {/* Halo rosa empolvado */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,_#FECDD3_0%,_transparent_70%)] opacity-30" />
-        {/* Halo dorado lateral */}
-        <div className="absolute -top-20 -right-32 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_#D4A574_0%,_transparent_70%)] opacity-15" />
-        <div className="absolute -bottom-20 -left-32 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,_#D4A574_0%,_transparent_70%)] opacity-10" />
+      <section className="relative overflow-hidden bg-cream">
+        {/* Halos decorativos */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[700px] h-[700px] rounded-full bg-rose-blush opacity-20 blur-[180px]" />
+        <div className="absolute -top-20 -right-32 w-[500px] h-[500px] rounded-full bg-gold opacity-10 blur-[160px]" />
+        <div className="absolute -bottom-20 -left-32 w-[400px] h-[400px] rounded-full bg-gold opacity-8 blur-[140px]" />
         {/* Circulos decorativos */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border border-gold/15" />
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-rose-blush/20" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border border-gold/10" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-rose-blush/15" />
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 text-center">
           <div className="w-16 h-px bg-gold mx-auto mb-8" />
           <span className="inline-block text-gold text-xs font-semibold uppercase tracking-[0.25em] mb-6">
@@ -88,7 +87,7 @@ export default async function Home() {
       </section>
 
       {/* Latest Posts */}
-      <section className="bg-white border-y border-border">
+      <section className="bg-surface border-y border-border">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
           <div className="flex items-end justify-between mb-14">
             <div>

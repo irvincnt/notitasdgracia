@@ -108,7 +108,7 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
           prose-strong:text-foreground prose-strong:font-semibold
           prose-em:text-foreground/70
           prose-code:text-rose-deep prose-code:bg-cream prose-code:px-1.5 prose-code:py-0.5 prose-code:rounded prose-code:text-sm
-          prose-pre:bg-foreground prose-pre:text-white/90 prose-pre:rounded-xl prose-pre:overflow-x-auto
+          prose-pre:bg-cream prose-pre:text-foreground/90 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:border prose-pre:border-border
           prose-blockquote:border-l prose-blockquote:border-gold prose-blockquote:text-foreground/60 prose-blockquote:pl-6 prose-blockquote:italic
           prose-img:rounded-xl prose-img:shadow-md prose-img:border prose-img:border-border
           prose-li:text-foreground/75 prose-li:leading-relaxed
