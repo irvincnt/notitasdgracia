@@ -4,70 +4,133 @@ import { getAllBlogPosts } from "@/lib/blog";
 
 export default async function BlogPage() {
   const posts = await getAllBlogPosts();
+  const featuredPost = posts[0];
+  const remainingPosts = posts.slice(1);
 
   return (
     <div className="min-h-screen">
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="mb-16">
-          <h1 className="text-5xl sm:text-6xl font-bold bg-linear-to-r from-rose-500 to-purple-600 bg-clip-text text-transparent mb-4 font-playfair">
-          Reflexiones Inspiradoras
+      {/* Page Header */}
+      <section className="bg-cream border-b border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20 text-center">
+          <div className="w-12 h-px bg-gold mx-auto mb-6" />
+          <h1 className="text-4xl sm:text-5xl font-playfair font-bold text-foreground mb-4">
+            Reflexiones de Fe
           </h1>
-          <p className="text-xl text-slate-600 font-light">
-          Descubre las reflexiones más inspiradoras para nutrir tu alma y fortalecer tu fe
+          <p className="text-foreground/60 max-w-lg mx-auto leading-relaxed">
+            Cada reflexión es una invitación a detenerte, respirar y encontrar
+            la gracia de Dios en lo cotidiano.
           </p>
+          <div className="w-12 h-px bg-gold mx-auto mt-6" />
         </div>
+      </section>
 
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-14 sm:py-20">
         {posts.length === 0 ? (
-          <div className="text-center py-20">
-            <p className="text-slate-500 text-lg">
-              No hay posts disponibles aún. ✨
+          <div className="text-center py-24 bg-white rounded-2xl border border-border">
+            <div className="w-8 h-px bg-gold mx-auto mb-6" />
+            <p className="text-foreground/50">
+              Pronto compartiremos nuevas reflexiones.
             </p>
           </div>
         ) : (
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {posts.map((post) => (
+          <>
+            {/* Featured Post */}
+            {featuredPost && (
               <Link
-                key={post.slug}
-                href={`/blog/${post.slug}`}
-                className="group bg-white rounded-2xl shadow-md hover:shadow-2xl border border-rose-100 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-rose-300"
+                href={`/blog/${featuredPost.slug}`}
+                className="group block bg-white rounded-2xl overflow-hidden border border-border hover:border-gold-light hover:shadow-xl hover:shadow-gold/5 transition-all duration-500 mb-14"
               >
-                {post.image && (
-                  <div className="relative h-56 overflow-hidden bg-linear-to-br from-rose-100 to-purple-100">
-                    <Image
-                      src={post.image}
-                      alt={post.title}
-                      fill
-                      className="object-cover group-hover:scale-110 transition-transform duration-500"
-                    />
-                  </div>
-                )}
-                <div className="p-6">
-                  <h2 className="text-xl font-bold text-slate-900 mb-3 group-hover:text-rose-500 transition-colors font-playfair line-clamp-2">
-                    {post.title}
-                  </h2>
-                  <div className="flex items-center gap-2 text-sm text-rose-500 mb-4">
-                    <svg
-                      className="w-4 h-4"
-                      fill="currentColor"
-                      viewBox="0 0 20 20"
-                    >
-                      <path d="M5.75 13a3.75 3.75 0 002.677-6.36L10 5.581V5a2 2 0 012 2v5a2 2 0 11-4 0v-.5a.75.75 0 111.5 0v.5a.5.5 0 101 0v-5a.5.5 0 00-.5-.5h-.676c.15-1.368.7-2.236 1.948-2.236.904 0 1.685.458 2.502 1.153.315-.233.617-.468.904-.686C11.922 2.331 10.957 1.5 9.5 1.5c-1.933 0-3.285 1.373-3.454 3.5H4.75a.75.75 0 000 1.5h.592c-.08.467-.147.972-.147 1.5 0 .528.067 1.033.147 1.5h-.592a.75.75 0 000 1.5h1.592c.169 2.127 1.521 3.5 3.454 3.5 1.457 0 2.422-.831 3.085-1.779-.287-.218-.589-.453-.904-.686-.817.695-1.598 1.153-2.502 1.153-1.248 0-1.798-.868-1.948-2.236h.676z" />
-                    </svg>
-                    <span className="font-medium">
-                      {new Date(post.date).toLocaleDateString("es-ES", {
-                        year: "numeric",
-                        month: "short",
-                        day: "numeric",
-                      })}
+                <div className="grid md:grid-cols-5">
+                  {featuredPost.image && (
+                    <div className="relative h-64 md:h-full min-h-[300px] md:col-span-3 overflow-hidden">
+                      <Image
+                        src={featuredPost.image}
+                        alt={featuredPost.title}
+                        fill
+                        className="object-cover group-hover:scale-105 transition-transform duration-700"
+                      />
+                    </div>
+                  )}
+                  <div className="p-8 sm:p-10 md:col-span-2 flex flex-col justify-center">
+                    <span className="text-xs text-gold font-semibold uppercase tracking-[0.2em] mb-4">
+                      Más reciente
                     </span>
+                    <h2 className="text-2xl sm:text-3xl font-playfair font-bold text-foreground mb-4 leading-tight group-hover:text-gold-dark transition-colors">
+                      {featuredPost.title}
+                    </h2>
+                    <p className="text-foreground/55 mb-6 leading-relaxed line-clamp-3 text-sm">
+                      {featuredPost.description}
+                    </p>
+                    <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
+                      <time className="text-xs text-foreground/40">
+                        {new Date(featuredPost.date).toLocaleDateString(
+                          "es-ES",
+                          {
+                            year: "numeric",
+                            month: "long",
+                            day: "numeric",
+                          },
+                        )}
+                      </time>
+                      <span className="text-sm text-gold group-hover:text-gold-dark transition-colors inline-flex items-center gap-2">
+                        Leer
+                        <svg
+                          className="w-4 h-4 group-hover:translate-x-1 transition-transform"
+                          fill="none"
+                          stroke="currentColor"
+                          viewBox="0 0 24 24"
+                        >
+                          <path
+                            strokeLinecap="round"
+                            strokeLinejoin="round"
+                            strokeWidth={1.5}
+                            d="M17 8l4 4m0 0l-4 4m4-4H3"
+                          />
+                        </svg>
+                      </span>
+                    </div>
                   </div>
-                  <p className="text-slate-600 text-sm line-clamp-3 font-light leading-relaxed">
-                    {post.description}
-                  </p>
                 </div>
               </Link>
-            ))}
-          </div>
+            )}
+
+            {/* Post Grid */}
+            {remainingPosts.length > 0 && (
+              <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                {remainingPosts.map((post) => (
+                  <Link
+                    key={post.slug}
+                    href={`/blog/${post.slug}`}
+                    className="group"
+                  >
+                    {post.image && (
+                      <div className="relative h-52 sm:h-56 rounded-xl overflow-hidden mb-5 border border-border group-hover:border-gold-light transition-colors">
+                        <Image
+                          src={post.image}
+                          alt={post.title}
+                          fill
+                          className="object-cover group-hover:scale-105 transition-transform duration-500"
+                        />
+                      </div>
+                    )}
+                    <time className="text-xs text-gold uppercase tracking-[0.15em] mb-3 block">
+                      {new Date(post.date).toLocaleDateString("es-ES", {
+                        year: "numeric",
+                        month: "long",
+                        day: "numeric",
+                      })}
+                    </time>
+                    <h3 className="text-lg font-playfair font-bold text-foreground mb-2 leading-snug group-hover:text-gold-dark transition-colors line-clamp-2">
+                      {post.title}
+                    </h3>
+                    <p className="text-foreground/50 text-sm line-clamp-2 leading-relaxed">
+                      {post.description}
+                    </p>
+                  </Link>
+                ))}
+              </div>
+            )}
+          </>
         )}
       </section>
     </div>

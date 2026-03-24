@@ -5,119 +5,177 @@ import { getAllBlogPosts } from "@/lib/blog";
 export default async function Home() {
   const posts = await getAllBlogPosts();
   const featuredPost = posts[0];
-  const latestPosts = posts.slice(0, 4);
+  const latestPosts = posts.slice(0, 6);
 
   return (
     <div className="min-h-screen">
-      {/* Featured Post Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <div className="mb-16">
-          <h1 className="text-5xl sm:text-6xl font-bold bg-linear-to-r from-rose-500 to-purple-600 bg-clip-text text-transparent mb-4 font-playfair leading-tight">
-          Reflexiones Destacadas
+      {/* Hero Section */}
+      <section className="relative overflow-hidden bg-gradient-to-b from-cream via-[#FFF1F2] to-cream">
+        {/* Halo rosa empolvado */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-[45%] w-[700px] h-[700px] rounded-full bg-[radial-gradient(circle,_#FECDD3_0%,_transparent_70%)] opacity-30" />
+        {/* Halo dorado lateral */}
+        <div className="absolute -top-20 -right-32 w-[500px] h-[500px] rounded-full bg-[radial-gradient(circle,_#D4A574_0%,_transparent_70%)] opacity-15" />
+        <div className="absolute -bottom-20 -left-32 w-[400px] h-[400px] rounded-full bg-[radial-gradient(circle,_#D4A574_0%,_transparent_70%)] opacity-10" />
+        {/* Circulos decorativos */}
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] rounded-full border border-gold/15" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[450px] h-[450px] rounded-full border border-rose-blush/20" />
+        <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 text-center">
+          <div className="w-16 h-px bg-gold mx-auto mb-8" />
+          <span className="inline-block text-gold text-xs font-semibold uppercase tracking-[0.25em] mb-6">
+            Devocional semanal
+          </span>
+          <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold leading-[1.15] mb-6 max-w-3xl mx-auto text-foreground">
+            Pequeñas notas{" "}
+            <em className="text-gold not-italic font-playfair">de gracia</em>
+            <br />
+            para tu alma
           </h1>
-          <p className="text-lg text-slate-600 font-light">
-          Descubre las reflexiones más inspiradoras para nutrir tu alma y fortalecer tu fe
+          <p className="text-base sm:text-lg text-foreground/60 max-w-xl mx-auto mb-10 leading-relaxed">
+            Reflexiones bíblicas que iluminan tu día, fortalecen tu fe y te
+            recuerdan el amor incondicional de Dios.
           </p>
-        </div>
-
-        {featuredPost && (
-          <div className="bg-gradient-to-br from-white to-rose-50/30 rounded-3xl shadow-lg overflow-hidden border border-rose-100">
-            <div className="grid md:grid-cols-2 gap-12 p-8 md:p-16">
-              <div className="flex flex-col justify-center">
-                <div className="flex items-center gap-3 text-rose-500 mb-6">
-                  <svg
-                    className="w-5 h-5"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M5.75 13a3.75 3.75 0 002.677-6.36L10 5.581V5a2 2 0 012 2v5a2 2 0 11-4 0v-.5a.75.75 0 111.5 0v.5a.5.5 0 101 0v-5a.5.5 0 00-.5-.5h-.676c.15-1.368.7-2.236 1.948-2.236.904 0 1.685.458 2.502 1.153.315-.233.617-.468.904-.686C11.922 2.331 10.957 1.5 9.5 1.5c-1.933 0-3.285 1.373-3.454 3.5H4.75a.75.75 0 000 1.5h.592c-.08.467-.147.972-.147 1.5 0 .528.067 1.033.147 1.5h-.592a.75.75 0 000 1.5h1.592c.169 2.127 1.521 3.5 3.454 3.5 1.457 0 2.422-.831 3.085-1.779-.287-.218-.589-.453-.904-.686-.817.695-1.598 1.153-2.502 1.153-1.248 0-1.798-.868-1.948-2.236h.676z" />
-                  </svg>
-                  <span className="font-medium">
-                    {new Date(featuredPost.date).toLocaleDateString("es-ES", {
-                      year: "numeric",
-                      month: "long",
-                      day: "numeric",
-                    })}
-                  </span>
-                </div>
-                <h2 className="text-4xl font-bold text-slate-900 mb-6 font-playfair leading-tight">
-                  {featuredPost.title}
-                </h2>
-                <p className="text-slate-700 mb-8 leading-relaxed text-lg font-light">
-                  {featuredPost.description}
-                </p>
-                <Link
-                  href={`/blog/${featuredPost.slug}`}
-                  className="inline-flex items-center justify-center w-fit px-8 py-3 bg-linear-to-r from-rose-500 to-purple-600 rounded-full text-white hover:shadow-lg hover:-translate-y-1 transition-all font-medium"
-                >
-                  Leer Más
-                </Link>
-              </div>
-
-              {featuredPost.image && (
-                <div className="relative h-96 md:h-full min-h-96 rounded-2xl overflow-hidden shadow-xl">
-                  <Image
-                    src={featuredPost.image}
-                    alt={featuredPost.title}
-                    fill
-                    className="object-cover hover:scale-105 transition-transform duration-500"
-                  />
-                </div>
-              )}
-            </div>
+          <div className="flex flex-wrap justify-center gap-4">
+            <Link
+              href="/blog"
+              className="px-8 py-3 bg-gold hover:bg-gold-dark text-white rounded-full text-sm font-medium transition-colors"
+            >
+              Explorar reflexiones
+            </Link>
+            <Link
+              href={featuredPost ? `/blog/${featuredPost.slug}` : "/blog"}
+              className="px-8 py-3 bg-transparent hover:bg-foreground/5 text-foreground rounded-full text-sm font-medium transition-colors border border-border"
+            >
+              Leer la más reciente
+            </Link>
           </div>
-        )}
+          <div className="w-16 h-px bg-gold mx-auto mt-12" />
+        </div>
       </section>
 
-      {/* Latest Posts Section */}
-      <section className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-16 sm:py-24">
-        <h2 className="text-4xl font-bold text-slate-900 mb-16 font-playfair">
-          Posts Recientes
-        </h2>
+      {/* Bienvenida Personal */}
+      <section className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+        <div className="max-w-2xl mx-auto text-center">
+          <div className="w-10 h-px bg-gold mx-auto mb-8" />
+          <p className="text-foreground/80 text-2xl sm:text-3xl font-playfair leading-snug mb-8">
+            Hola <span className="text-rose-blush">&#x1F90D;</span>
+          </p>
+          <p className="text-foreground/80 font-playfair text-xl sm:text-2xl leading-relaxed mb-2">
+            Bienvenido(a) a{" "}
+            <span className="text-gold font-semibold">Notitas de Gracia</span>.
+          </p>
+          <div className="w-6 h-px bg-gold-light mx-auto my-8" />
+          <div className="space-y-5 text-foreground/60 leading-[1.9] text-base sm:text-lg">
+            <p>
+              Este es un espacio creado para compartir pequeños devocionales y
+              recordatorios del amor de Dios en medio de la vida diaria.
+            </p>
+            <p>
+              A veces todo puede sentirse pesado… la rutina, las
+              preocupaciones, el cansancio. Pero aun en medio de todo, siempre
+              hay <em className="text-gold not-italic font-medium">gracia disponible</em> para
+              nosotros.
+            </p>
+            <p>
+              Mi oración es que cada notita fortalezca tu fe, traiga paz a tu
+              corazón y te recuerde que nunca estás solo(a), porque Dios siempre
+              está contigo.
+            </p>
+          </div>
+          <p className="text-foreground/50 text-sm mt-8 italic">
+            Gracias por estar aquí.
+          </p>
+          <div className="w-10 h-px bg-gold mx-auto mt-8" />
+        </div>
+      </section>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
-          {latestPosts.map((post) => (
+      {/* Latest Posts */}
+      <section className="bg-white border-y border-border">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-20 sm:py-28">
+          <div className="flex items-end justify-between mb-14">
+            <div>
+              <span className="text-gold text-xs font-semibold uppercase tracking-[0.25em] mb-3 block">
+                Últimas publicaciones
+              </span>
+              <h2 className="text-3xl sm:text-4xl font-playfair font-bold text-foreground">
+                Reflexiones recientes
+              </h2>
+            </div>
             <Link
-              key={post.slug}
-              href={`/blog/${post.slug}`}
-              className="group bg-white rounded-2xl shadow-md hover:shadow-2xl border border-rose-100 overflow-hidden transition-all duration-300 hover:-translate-y-2 hover:border-rose-300"
+              href="/blog"
+              className="hidden sm:inline-flex items-center gap-2 text-sm text-gold hover:text-gold-dark transition-colors"
             >
-              {post.image && (
-                <div className="relative h-48 overflow-hidden bg-linear-to-br from-rose-100 to-purple-100">
-                  <Image
-                    src={post.image}
-                    alt={post.title}
-                    fill
-                    className="object-cover group-hover:scale-110 transition-transform duration-500"
-                  />
-                </div>
-              )}
-              <div className="p-6">
-                <h3 className="text-lg font-bold text-slate-900 mb-3 group-hover:text-rose-500 transition-colors font-playfair line-clamp-2">
+              Ver todas
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
+            </Link>
+          </div>
+
+          <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {latestPosts.map((post) => (
+              <Link
+                key={post.slug}
+                href={`/blog/${post.slug}`}
+                className="group"
+              >
+                {post.image && (
+                  <div className="relative h-52 sm:h-56 rounded-xl overflow-hidden mb-5 border border-border group-hover:border-gold-light transition-colors">
+                    <Image
+                      src={post.image}
+                      alt={post.title}
+                      fill
+                      className="object-cover group-hover:scale-105 transition-transform duration-500"
+                    />
+                  </div>
+                )}
+                <time className="text-xs text-gold uppercase tracking-[0.15em] mb-3 block">
+                  {new Date(post.date).toLocaleDateString("es-ES", {
+                    year: "numeric",
+                    month: "long",
+                    day: "numeric",
+                  })}
+                </time>
+                <h3 className="text-lg font-playfair font-bold text-foreground mb-2 leading-snug group-hover:text-gold-dark transition-colors line-clamp-2">
                   {post.title}
                 </h3>
-                <div className="flex items-center gap-2 text-sm text-rose-500 mb-4">
-                  <svg
-                    className="w-4 h-4"
-                    fill="currentColor"
-                    viewBox="0 0 20 20"
-                  >
-                    <path d="M5.75 13a3.75 3.75 0 002.677-6.36L10 5.581V5a2 2 0 012 2v5a2 2 0 11-4 0v-.5a.75.75 0 111.5 0v.5a.5.5 0 101 0v-5a.5.5 0 00-.5-.5h-.676c.15-1.368.7-2.236 1.948-2.236.904 0 1.685.458 2.502 1.153.315-.233.617-.468.904-.686C11.922 2.331 10.957 1.5 9.5 1.5c-1.933 0-3.285 1.373-3.454 3.5H4.75a.75.75 0 000 1.5h.592c-.08.467-.147.972-.147 1.5 0 .528.067 1.033.147 1.5h-.592a.75.75 0 000 1.5h1.592c.169 2.127 1.521 3.5 3.454 3.5 1.457 0 2.422-.831 3.085-1.779-.287-.218-.589-.453-.904-.686-.817.695-1.598 1.153-2.502 1.153-1.248 0-1.798-.868-1.948-2.236h.676z" />
-                  </svg>
-                  <span className="font-medium">
-                    {new Date(post.date).toLocaleDateString("es-ES", {
-                      year: "numeric",
-                      month: "short",
-                      day: "numeric",
-                    })}
-                  </span>
-                </div>
-                <p className="text-slate-600 text-sm line-clamp-3 font-light leading-relaxed">
+                <p className="text-foreground/50 text-sm line-clamp-2 leading-relaxed">
                   {post.description}
                 </p>
-              </div>
+              </Link>
+            ))}
+          </div>
+
+          <div className="mt-12 text-center sm:hidden">
+            <Link
+              href="/blog"
+              className="inline-flex items-center gap-2 text-sm text-gold"
+            >
+              Ver todas las reflexiones
+              <svg
+                className="w-4 h-4"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={1.5}
+                  d="M17 8l4 4m0 0l-4 4m4-4H3"
+                />
+              </svg>
             </Link>
-          ))}
+          </div>
         </div>
       </section>
     </div>

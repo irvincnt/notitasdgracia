@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
-import { Playfair_Display, Inter } from "next/font/google";
+import { Playfair_Display, Lora } from "next/font/google";
+import Link from "next/link";
 import "./globals.css";
 
 const playfair = Playfair_Display({
@@ -8,15 +9,17 @@ const playfair = Playfair_Display({
   weight: ["500", "600", "700"],
 });
 
-const inter = Inter({
-  variable: "--font-inter",
+const lora = Lora({
+  variable: "--font-lora",
   subsets: ["latin"],
-  weight: ["400", "500", "600"],
+  weight: ["400", "500", "600", "700"],
+  style: ["normal", "italic"],
 });
 
 export const metadata: Metadata = {
-  title: "Notitas de Gracia - Blog",
-  description: "Un blog hermoso sobre arte, fotografía y creatividad",
+  title: "Notitas de Gracia - Devocionales de Fe",
+  description:
+    "Reflexiones diarias y devocionales para nutrir tu alma y fortalecer tu fe. Encuentra inspiración, esperanza y gracia en cada palabra.",
 };
 
 export default function RootLayout({
@@ -27,40 +30,97 @@ export default function RootLayout({
   return (
     <html lang="es">
       <body
-        className={`${playfair.variable} ${inter.variable} antialiased bg-linear-to-br from-rose-50 via-white to-purple-50`}
+        className={`${playfair.variable} ${lora.variable} antialiased bg-background`}
       >
-        <header className="border-b border-rose-100 bg-white/80 backdrop-blur-sm sticky top-0 z-50">
-          <nav className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <div className="flex items-center justify-between">
-              <a
+        {/* Header */}
+        <header className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-border">
+          <nav className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="flex items-center justify-between h-18 sm:h-20">
+              <Link
                 href="/"
-                className="text-2xl font-bold bg-linear-to-r from-rose-500 to-purple-600 bg-clip-text text-transparent hover:opacity-80 transition-opacity font-playfair"
+                className="font-playfair text-xl sm:text-2xl font-bold tracking-tight text-foreground hover:text-gold-dark transition-colors"
               >
-                ✨ Notitas de Gracia
-              </a>
-              <div className="flex gap-8">
-                <a
+                Notitas <span className="text-gold">de Gracia</span>
+              </Link>
+              <div className="flex items-center gap-1 sm:gap-6">
+                <Link
                   href="/"
-                  className="text-slate-700 hover:text-rose-500 transition-colors font-medium"
+                  className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors"
                 >
                   Inicio
-                </a>
-                <a
+                </Link>
+                <Link
                   href="/blog"
-                  className="text-slate-700 hover:text-rose-500 transition-colors font-medium"
+                  className="px-3 py-2 text-sm text-foreground/70 hover:text-foreground transition-colors"
                 >
-                  Blog
-                </a>
+                  Reflexiones
+                </Link>
               </div>
             </div>
           </nav>
         </header>
+
         <main className="min-h-screen">{children}</main>
-        <footer className="bg-white/50 border-t border-rose-100 backdrop-blur-sm mt-20">
-          <div className="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-            <p className="text-center text-slate-600">
-              © 2025 Notitas de Gracia. Devocionales de gracia para fortalecer tu fe.
-            </p>
+
+        {/* Footer */}
+        <footer className="bg-foreground text-white/70 mt-28">
+          <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+            {/* Footer Grid */}
+            <div className="grid grid-cols-1 sm:grid-cols-3 gap-10 pt-14 pb-14">
+              <div>
+                <h4 className="font-playfair text-white font-bold text-lg mb-4">
+                  Notitas <span className="text-gold">de Gracia</span>
+                </h4>
+                <p className="text-white/50 text-sm leading-relaxed">
+                  Devocionales y reflexiones para fortalecer tu fe, nutrir tu
+                  alma y recordarte que la gracia de Dios es nueva cada mañana.
+                </p>
+              </div>
+              <div>
+                <h4 className="text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-5">
+                  Navegación
+                </h4>
+                <ul className="space-y-3">
+                  <li>
+                    <Link
+                      href="/"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      Inicio
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/blog"
+                      className="text-white/50 hover:text-white transition-colors text-sm"
+                    >
+                      Reflexiones
+                    </Link>
+                  </li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-5">
+                  Versículo del día
+                </h4>
+                <blockquote className="text-white/50 text-sm italic leading-relaxed border-l border-gold pl-4">
+                  &ldquo;Porque por gracia ustedes han sido salvados mediante la
+                  fe; esto no procede de ustedes, sino que es el regalo de
+                  Dios.&rdquo;
+                  <span className="block text-white/30 mt-2 not-italic text-xs">
+                    — Efesios 2:8
+                  </span>
+                </blockquote>
+              </div>
+            </div>
+
+            {/* Copyright */}
+            <div className="border-t border-white/10 py-6 text-center">
+              <p className="text-white/30 text-xs tracking-wide">
+                © {new Date().getFullYear()} Notitas de Gracia. Hecho con fe y
+                amor.
+              </p>
+            </div>
           </div>
         </footer>
       </body>
