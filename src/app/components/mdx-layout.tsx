@@ -13,6 +13,8 @@ interface MdxLayoutProps {
 }
 
 export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
+  const hasHeroImage = Boolean(metadata?.image);
+
   return (
     <article className="min-h-screen">
       {/* Back Navigation */}
@@ -27,6 +29,8 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
+              aria-hidden="true"
+              focusable="false"
             >
               <path
                 strokeLinecap="round"
@@ -41,8 +45,12 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
       </div>
 
       {/* Article Header */}
-      <header className="bg-cream pb-10 sm:pb-14">
-        <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 text-center">
+      <header className="relative bg-cream">
+        <div
+          className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pt-12 sm:pt-20 text-center ${
+            hasHeroImage ? "pb-10 sm:pb-12" : "pb-10 sm:pb-14"
+          }`}
+        >
           {/* Meta */}
           <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
             {metadata?.date && (
@@ -78,27 +86,31 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
 
           <div className="w-12 h-px bg-gold mx-auto mt-8" />
         </div>
+
+        {/* Hero Image */}
+        {metadata?.image && (
+          <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-border/80 shadow-[0_18px_40px_-24px_rgba(0,0,0,0.5)]">
+              <Image
+                src={metadata.image}
+                alt={metadata.title || "Imagen del artículo"}
+                fill
+                className="object-cover"
+                priority
+              />
+            </div>
+          </div>
+        )}
       </header>
 
-      {/* Hero Image */}
-      {metadata?.image && (
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 mb-12 sm:mb-16">
-          <div className="relative aspect-[16/9] w-full rounded-2xl overflow-hidden border border-border shadow-lg">
-            <Image
-              src={metadata.image}
-              alt={metadata.title || "Imagen del artículo"}
-              fill
-              className="object-cover"
-              priority
-            />
-          </div>
-        </div>
-      )}
-
       {/* Article Content */}
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28">
+      <div
+        className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28 ${
+          hasHeroImage ? "pt-12 sm:pt-14" : ""
+        }`}
+      >
         <div
-          className="prose prose-lg max-w-none
+          className="article-prose prose prose-lg max-w-none
           prose-headings:font-playfair prose-headings:font-bold prose-headings:text-foreground
           prose-h2:text-2xl prose-h2:sm:text-3xl prose-h2:mt-12 prose-h2:mb-5
           prose-h3:text-xl prose-h3:sm:text-2xl prose-h3:mt-8 prose-h3:mb-4
@@ -111,8 +123,8 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
           prose-pre:bg-cream prose-pre:text-foreground/90 prose-pre:rounded-xl prose-pre:overflow-x-auto prose-pre:border prose-pre:border-border
           prose-blockquote:border-l prose-blockquote:border-gold prose-blockquote:text-foreground/60 prose-blockquote:pl-6 prose-blockquote:italic
           prose-img:rounded-xl prose-img:shadow-md prose-img:border prose-img:border-border
-          prose-li:text-foreground/75 prose-li:leading-relaxed
-          prose-ul:space-y-2 prose-ol:space-y-2
+          prose-li:text-foreground/75 prose-li:leading-[1.85] prose-li:text-base
+          prose-ol:space-y-2
           prose-table:border-collapse prose-table:w-full prose-th:bg-cream prose-th:text-foreground prose-th:font-semibold prose-th:p-3 prose-th:text-left
           prose-td:border prose-td:border-border prose-td:p-3
           prose-tr:border-b prose-tr:border-border

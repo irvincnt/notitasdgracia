@@ -11,7 +11,20 @@ const withMDX = createMDX({
 const nextConfig: NextConfig = {
   pageExtensions: ["js", "jsx", "md", "mdx", "ts", "tsx"],
   images: {
-    domains: ["images.unsplash.com", "s3-bucket-notitas-de-gracia.s3.us-east-2.amazonaws.com"],
+    remotePatterns: [
+      {
+        protocol: "https",
+        hostname: "images.unsplash.com",
+        port: "",
+        pathname: "/**",
+      },
+      {
+        protocol: "https",
+        hostname: "s3-bucket-notitas-de-gracia.s3.us-east-2.amazonaws.com",
+        port: "",
+        pathname: "/**",
+      },
+    ],
   },
 };
 
