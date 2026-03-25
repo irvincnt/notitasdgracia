@@ -21,7 +21,7 @@ export default async function Home() {
         <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 py-24 sm:py-36 text-center">
           <div className="w-16 h-px bg-gold mx-auto mb-8" />
           <span className="inline-block text-gold text-xs font-semibold uppercase tracking-[0.25em] mb-6">
-            Devocional semanal
+            Devocionales y reflexiones
           </span>
           <h1 className="text-4xl sm:text-5xl lg:text-6xl font-playfair font-bold leading-[1.15] mb-6 max-w-3xl mx-auto text-foreground">
             Pequeñas Notas{" "}

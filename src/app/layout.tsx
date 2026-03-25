@@ -1,5 +1,5 @@
-import type { Metadata } from "next";
 import { Analytics } from "@vercel/analytics/next";
+import type { Metadata } from "next";
 import { Lora, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import ThemeToggle from "./components/theme-toggle";
@@ -117,6 +117,39 @@ export default function RootLayout({
                   Devocionales y reflexiones para fortalecer tu fe, nutrir tu
                   alma y recordarte que la gracia de Dios es nueva cada mañana.
                 </p>
+                <a
+                  href="https://www.instagram.com/notitasdegracia"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-5 inline-flex items-center gap-2.5 text-muted/80 transition-colors hover:text-foreground/80 group"
+                  aria-label="Instagram de Notitas de Gracia"
+                >
+                  <span className="flex h-7 w-7 items-center justify-center rounded-full border border-border/70 text-muted/75 transition-colors group-hover:border-gold/35 group-hover:text-gold/80">
+                    <svg
+                      className="h-3.5 w-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                      aria-hidden="true"
+                      focusable="false"
+                    >
+                      <title>Instagram</title>
+                      <rect
+                        x="3.5"
+                        y="3.5"
+                        width="17"
+                        height="17"
+                        rx="5"
+                        strokeWidth="1.8"
+                      />
+                      <circle cx="12" cy="12" r="4.1" strokeWidth="1.8" />
+                      <circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" />
+                    </svg>
+                  </span>
+                  <span className="text-sm tracking-[0.01em]">
+                    @notitasdegracia
+                  </span>
+                </a>
               </div>
               <div>
                 <h4 className="text-gold text-xs font-semibold uppercase tracking-[0.2em] mb-5">
