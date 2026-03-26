@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { getAllBlogPosts } from "@/lib/blog";
+import { formatPostDate } from "@/lib/date";
 
 export default async function BlogPage() {
   const posts = await getAllBlogPosts();
@@ -63,14 +64,7 @@ export default async function BlogPage() {
                     </p>
                     <div className="flex items-center justify-between mt-auto pt-4 border-t border-border">
                       <time className="text-xs text-foreground/40">
-                        {new Date(featuredPost.date).toLocaleDateString(
-                          "es-ES",
-                          {
-                            year: "numeric",
-                            month: "long",
-                            day: "numeric",
-                          },
-                        )}
+                        {formatPostDate(featuredPost.date)}
                       </time>
                       <span className="text-sm text-gold group-hover:text-gold-dark transition-colors inline-flex items-center gap-2">
                         Leer
@@ -79,6 +73,8 @@ export default async function BlogPage() {
                           fill="none"
                           stroke="currentColor"
                           viewBox="0 0 24 24"
+                          aria-hidden="true"
+                          focusable="false"
                         >
                           <path
                             strokeLinecap="round"
@@ -116,11 +112,7 @@ export default async function BlogPage() {
                       </div>
                     )}
                     <time className="text-xs text-gold uppercase tracking-[0.15em] mb-3 block">
-                      {new Date(post.date).toLocaleDateString("es-ES", {
-                        year: "numeric",
-                        month: "long",
-                        day: "numeric",
-                      })}
+                      {formatPostDate(post.date)}
                     </time>
                     <h3 className="text-lg font-playfair font-bold text-foreground mb-2 leading-snug group-hover:text-gold-dark transition-colors line-clamp-2">
                       {post.title}

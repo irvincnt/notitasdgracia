@@ -102,3 +102,49 @@ html {
   border-radius: 0.2rem;
   background-color: color-mix(in srgb, var(--rose-blush) 58%, transparent);
 }
+
+.article-prose .voz-personal {
+  position: relative;
+  margin: 2.5rem 0;
+  padding: 1.8rem 1.35rem 1.35rem;
+  border: 1px solid color-mix(in srgb, var(--gold-light) 72%, var(--border));
+  border-left: 4px solid var(--gold);
+  border-radius: 1rem;
+  background:
+    radial-gradient(
+      circle at top right,
+      color-mix(in srgb, var(--rose-blush) 33%, transparent) 0%,
+      transparent 58%
+    ),
+    linear-gradient(
+      165deg,
+      color-mix(in srgb, var(--cream) 88%, white),
+      color-mix(in srgb, var(--surface) 90%, var(--rose-blush))
+    );
+  box-shadow: 0 24px 45px -38px
+    color-mix(in srgb, var(--gold-dark) 80%, transparent);
+}
+
+.article-prose .voz-personal::before {
+  display: inline-flex;
+  margin-bottom: 0.65rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 999px;
+  border: 1px solid color-mix(in srgb, var(--gold-light) 82%, var(--border));
+  background-color: color-mix(in srgb, var(--surface) 92%, var(--rose-blush));
+  color: color-mix(in srgb, var(--gold-dark) 80%, var(--foreground));
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.article-prose .voz-personal p {
+  color: color-mix(in srgb, var(--foreground) 83%, var(--muted));
+}
+
+.article-prose .voz-personal > p:first-of-type {
+  margin-top: 0.2rem;
+  font-style: italic;
+  color: color-mix(in srgb, var(--foreground) 76%, var(--gold-dark));
+}
