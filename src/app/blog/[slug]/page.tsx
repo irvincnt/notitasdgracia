@@ -1,3 +1,4 @@
+import { notFound } from "next/navigation";
 import MdxLayout from "@/app/components/mdx-layout";
 import { useMDXComponents } from "@/app/mdx-components";
 import { getAllBlogPosts } from "@/lib/blog";
@@ -43,6 +44,11 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const postModule = await import(`@/content/blog/${slug}.mdx`);
   const PostContent = postModule.default;
   const metadata = postModule.metadata;
+
+  if (metadata?.active !== true) {
+    notFound();
+  }
+
   const mdxComponents = useMDXComponents();
 
   return (

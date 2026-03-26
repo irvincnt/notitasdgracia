@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { formatPostDate } from "@/lib/date";
 
 interface MdxLayoutProps {
   children: React.ReactNode;
@@ -55,11 +56,7 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
           <div className="flex items-center justify-center gap-4 flex-wrap mb-6">
             {metadata?.date && (
               <time className="text-xs text-gold uppercase tracking-[0.15em]">
-                {new Date(metadata.date).toLocaleDateString("es-ES", {
-                  year: "numeric",
-                  month: "long",
-                  day: "numeric",
-                })}
+                {formatPostDate(metadata.date)}
               </time>
             )}
             {metadata?.author && (
