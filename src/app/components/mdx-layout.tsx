@@ -9,6 +9,7 @@ interface MdxLayoutProps {
     description?: string;
     date?: string;
     image?: string;
+    imageFooter?: string;
     author?: string;
   };
 }
@@ -130,6 +131,19 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
         >
           {children}
         </div>
+
+        {metadata?.imageFooter && (
+          <div className="flex justify-center mt-10">
+            <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden border border-border/60 shadow-sm">
+              <Image
+                src={metadata.imageFooter}
+                alt="Imagen de cierre"
+                fill
+                className="object-cover"
+              />
+            </div>
+          </div>
+        )}
       </div>
     </article>
   );
