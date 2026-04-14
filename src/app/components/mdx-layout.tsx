@@ -103,7 +103,7 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
 
       {/* Article Content */}
       <div
-        className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-28 ${
+        className={`max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 pb-20 sm:pb-5 ${
           hasHeroImage ? "pt-12 sm:pt-14" : ""
         }`}
       >
@@ -134,7 +134,7 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
 
         {metadata?.imageFooter && (
           <div className="flex justify-center mt-10">
-            <div className="relative w-40 h-40 sm:w-48 sm:h-48 rounded-xl overflow-hidden border border-border/60 shadow-sm">
+            <div className="relative w-90 h-60 rounded-xl overflow-hidden border border-border/60 shadow-sm">
               <Image
                 src={metadata.imageFooter}
                 alt="Imagen de cierre"
