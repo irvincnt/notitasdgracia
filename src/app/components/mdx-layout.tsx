@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { formatPostDate } from "@/lib/date";
+import SharePost from "@/app/components/share-post";
 
 interface MdxLayoutProps {
   children: React.ReactNode;
@@ -144,6 +145,8 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
             </div>
           </div>
         )}
+
+        <SharePost />
       </div>
     </article>
   );
