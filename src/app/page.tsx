@@ -31,8 +31,8 @@ export default async function Home() {
             para tu alma
           </h1>
           <p className="text-base sm:text-lg text-foreground/60 max-w-xl mx-auto mb-10 leading-relaxed">
-            Reflexiones bíblicas que iluminan tu día, fortalecen tu fe y te
-            recuerdan el amor incondicional de Dios.
+            Reflexiones bíblicas que fortalecen tu fe y te recuerdan el amor
+            incondicional de Dios.
           </p>
           <div className="flex flex-wrap justify-center gap-4">
             <Link
