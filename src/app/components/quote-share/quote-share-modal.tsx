@@ -249,50 +249,49 @@ export default function QuoteShareModal({
             type="button"
             onClick={handleDownload}
             disabled={downloading}
-            className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 text-sm font-medium uppercase tracking-[0.12em] text-background transition-opacity hover:opacity-90 disabled:opacity-60"
+            className="flex w-full items-center justify-center gap-2 rounded-full bg-foreground py-3 text-sm font-medium uppercase leading-none tracking-[0.12em] text-background transition-opacity hover:opacity-90 disabled:opacity-60 [isolation:isolate]"
           >
             {downloading ? (
-              <>
-                <svg
-                  className="h-4 w-4 animate-spin"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  aria-hidden="true"
-                >
-                  <circle
-                    cx="12"
-                    cy="12"
-                    r="9"
-                    stroke="currentColor"
-                    strokeOpacity="0.3"
-                    strokeWidth="2.5"
-                  />
-                  <path
-                    d="M21 12a9 9 0 0 0-9-9"
-                    stroke="currentColor"
-                    strokeWidth="2.5"
-                    strokeLinecap="round"
-                  />
-                </svg>
-                Generando…
-              </>
-            ) : (
-              <>
-                <svg
-                  viewBox="0 0 24 24"
-                  className="h-4 w-4"
-                  fill="none"
+              <svg
+                key="spinner"
+                className="h-4 w-4 animate-spin"
+                viewBox="0 0 24 24"
+                fill="none"
+                aria-hidden="true"
+              >
+                <circle
+                  cx="12"
+                  cy="12"
+                  r="9"
                   stroke="currentColor"
-                  strokeWidth={1.8}
+                  strokeOpacity="0.3"
+                  strokeWidth="2.5"
+                />
+                <path
+                  d="M21 12a9 9 0 0 0-9-9"
+                  stroke="currentColor"
+                  strokeWidth="2.5"
                   strokeLinecap="round"
-                  strokeLinejoin="round"
-                  aria-hidden="true"
-                >
-                  <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
-                </svg>
-                Descargar
-              </>
+                />
+              </svg>
+            ) : (
+              <svg
+                key="download"
+                viewBox="0 0 24 24"
+                className="h-4 w-4"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth={1.8}
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M12 4v12m0 0l-5-5m5 5l5-5M5 20h14" />
+              </svg>
             )}
+            <span className="whitespace-nowrap">
+              {downloading ? "Generando…" : "Descargar"}
+            </span>
           </button>
         </div>
       </div>
