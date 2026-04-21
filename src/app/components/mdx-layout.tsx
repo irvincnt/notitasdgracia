@@ -155,13 +155,7 @@ export default function MdxLayout({
         <SharePost />
       </div>
 
-      {slug && (
-        <SelectionTrigger
-          title={metadata?.title ?? ""}
-          author={metadata?.author ?? ""}
-          slug={slug}
-        />
-      )}
+      {slug && <SelectionTrigger title={metadata?.title ?? ""} slug={slug} />}
     </article>
   );
 }

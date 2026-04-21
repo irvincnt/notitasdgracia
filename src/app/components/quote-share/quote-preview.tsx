@@ -1,21 +1,35 @@
 "use client";
 
-export type BgVariant = "dark" | "cream" | "rose";
+export type BgVariant = "retro" | "dark" | "cream" | "gold";
 export type RatioVariant = "vertical" | "instagram" | "square";
 
 interface QuotePreviewProps {
   quote: string;
   title: string;
-  author: string;
   bg: BgVariant;
   ratio: RatioVariant;
   domain: string;
 }
 
-const BG_STYLES: Record<
-  BgVariant,
-  { bg: string; fg: string; muted: string; accent: string }
-> = {
+interface BgStyle {
+  bg: string;
+  fg: string;
+  muted: string;
+  accent: string;
+  backgroundImage?: string;
+}
+
+const RETRO_GRADIENT =
+  "radial-gradient(ellipse 55% 40% at 22% 22%, rgba(230, 238, 255, 0.75) 0%, rgba(230, 238, 255, 0) 65%), radial-gradient(ellipse 70% 55% at 85% 78%, rgba(255, 214, 170, 0.45) 0%, rgba(255, 214, 170, 0) 70%), radial-gradient(ellipse 45% 40% at 65% 15%, rgba(180, 200, 255, 0.4) 0%, rgba(180, 200, 255, 0) 65%), radial-gradient(circle at 15% 95%, rgba(100, 140, 230, 0.55) 0%, rgba(100, 140, 230, 0) 55%), linear-gradient(155deg, #1d3aa8 0%, #142780 35%, #0c1655 70%, #070f3a 100%)";
+
+const BG_STYLES: Record<BgVariant, BgStyle> = {
+  retro: {
+    bg: "#0e1c5a",
+    backgroundImage: RETRO_GRADIENT,
+    fg: "#f5efe7",
+    muted: "#c9d0f0",
+    accent: "#f5deb3",
+  },
   dark: {
     bg: "#1c1a18",
     fg: "#f5efe7",
@@ -28,11 +42,11 @@ const BG_STYLES: Record<
     muted: "#78716c",
     accent: "#b8956a",
   },
-  rose: {
-    bg: "#e11d48",
-    fg: "#fff7ed",
-    muted: "#fecdd3",
-    accent: "#ffe4e6",
+  gold: {
+    bg: "#c9a671",
+    fg: "#1f1a12",
+    muted: "#5c4a2e",
+    accent: "#fff7ed",
   },
 };
 
@@ -45,7 +59,6 @@ const RATIO_ASPECTS: Record<RatioVariant, string> = {
 export default function QuotePreview({
   quote,
   title,
-  author,
   bg,
   ratio,
   domain,
@@ -59,17 +72,20 @@ export default function QuotePreview({
       style={{
         aspectRatio: aspect,
         backgroundColor: colors.bg,
+        backgroundImage: colors.backgroundImage,
         color: colors.fg,
         containerType: "inline-size",
       }}
     >
       <div className="absolute inset-0 flex flex-col justify-between p-[8%]">
         <div
-          className="font-playfair leading-none"
+          className="leading-none"
           style={{
             color: colors.accent,
+            fontFamily: "var(--font-cormorant), Georgia, serif",
+            fontStyle: "italic",
             fontSize: "clamp(48px, 14cqw, 180px)",
-            opacity: 0.85,
+            opacity: 0.9,
           }}
         >
           &ldquo;
@@ -77,10 +93,13 @@ export default function QuotePreview({
 
         <div className="flex flex-1 items-center">
           <p
-            className="font-playfair font-bold leading-snug"
+            className="leading-snug"
             style={{
               color: colors.fg,
-              fontSize: "clamp(14px, 5cqw, 48px)",
+              fontFamily: "var(--font-cormorant), Georgia, serif",
+              fontStyle: "italic",
+              fontWeight: 600,
+              fontSize: "clamp(15px, 5.4cqw, 52px)",
             }}
           >
             {quote}
@@ -92,22 +111,11 @@ export default function QuotePreview({
             className="h-[2px] w-12"
             style={{ backgroundColor: colors.accent }}
           />
-          {author && (
-            <div
-              className="uppercase tracking-[0.2em]"
-              style={{
-                color: colors.fg,
-                fontSize: "clamp(8px, 1.6cqw, 16px)",
-              }}
-            >
-              {author}
-            </div>
-          )}
           {title && (
             <div
               style={{
                 color: colors.muted,
-                fontSize: "clamp(8px, 1.5cqw, 15px)",
+                fontSize: "clamp(8px, 1.6cqw, 16px)",
                 lineHeight: 1.3,
               }}
             >

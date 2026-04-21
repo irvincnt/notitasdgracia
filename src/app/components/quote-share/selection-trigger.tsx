@@ -5,7 +5,6 @@ import QuoteShareModal from "./quote-share-modal";
 
 interface SelectionTriggerProps {
   title: string;
-  author: string;
   slug: string;
 }
 
@@ -36,7 +35,6 @@ function rangeInsideArticle(range: Range): boolean {
 
 export default function SelectionTrigger({
   title,
-  author,
   slug,
 }: SelectionTriggerProps) {
   const [trigger, setTrigger] = useState<TriggerState | null>(null);
@@ -156,7 +154,7 @@ export default function SelectionTrigger({
           >
             <path d="M7 8h10M7 12h6M5 20l3-3h11a2 2 0 0 0 2-2V6a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v12l2 2z" />
           </svg>
-          Compartir cita
+          Generar cita
         </button>
       )}
 
@@ -164,7 +162,6 @@ export default function SelectionTrigger({
         <QuoteShareModal
           quote={activeQuote}
           title={title}
-          author={author}
           slug={slug}
           onClose={handleClose}
         />

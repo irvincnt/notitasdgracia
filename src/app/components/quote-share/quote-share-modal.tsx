@@ -10,15 +10,20 @@ import QuotePreview, {
 interface QuoteShareModalProps {
   quote: string;
   title: string;
-  author: string;
   slug: string;
   onClose: () => void;
 }
 
 const BG_OPTIONS: Array<{ id: BgVariant; swatch: string; label: string }> = [
+  {
+    id: "retro",
+    swatch:
+      "radial-gradient(ellipse at 30% 30%, rgba(220, 230, 255, 0.5) 0%, transparent 60%), linear-gradient(155deg, #142a7a 0%, #0a1548 100%)",
+    label: "Fondo retro",
+  },
   { id: "dark", swatch: "#1c1a18", label: "Fondo oscuro" },
   { id: "cream", swatch: "#fff7ed", label: "Fondo claro" },
-  { id: "rose", swatch: "#e11d48", label: "Fondo rosa" },
+  { id: "gold", swatch: "#c9a671", label: "Fondo dorado" },
 ];
 
 const RATIO_OPTIONS: Array<{ id: RatioVariant; label: string; hint: string }> =
@@ -36,11 +41,10 @@ function getDomain(): string {
 export default function QuoteShareModal({
   quote,
   title,
-  author,
   slug,
   onClose,
 }: QuoteShareModalProps) {
-  const [bg, setBg] = useState<BgVariant>("dark");
+  const [bg, setBg] = useState<BgVariant>("retro");
   const [ratio, setRatio] = useState<RatioVariant>("instagram");
   const [downloading, setDownloading] = useState(false);
   const [error, setError] = useState<string | null>(null);
@@ -83,7 +87,6 @@ export default function QuoteShareModal({
       const params = new URLSearchParams({
         text: quote,
         title,
-        author,
         slug,
         bg,
         ratio,
@@ -104,7 +107,7 @@ export default function QuoteShareModal({
     } finally {
       setDownloading(false);
     }
-  }, [quote, title, author, slug, bg, ratio]);
+  }, [quote, title, slug, bg, ratio]);
 
   if (!mounted) return null;
 
@@ -128,7 +131,7 @@ export default function QuoteShareModal({
             id="quote-share-title"
             className="font-playfair text-lg font-bold text-foreground"
           >
-            Compartir cita
+            Generar cita
           </h2>
           <button
             ref={closeButtonRef}
@@ -156,7 +159,6 @@ export default function QuoteShareModal({
             <QuotePreview
               quote={quote}
               title={title}
-              author={author}
               bg={bg}
               ratio={ratio}
               domain={domain.toUpperCase()}
@@ -182,7 +184,7 @@ export default function QuoteShareModal({
                         ? "border-foreground scale-105"
                         : "border-border hover:border-foreground/40"
                     }`}
-                    style={{ backgroundColor: option.swatch }}
+                    style={{ background: option.swatch }}
                   >
                     {selected && (
                       <svg

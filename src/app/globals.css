@@ -43,6 +43,7 @@
   --color-muted: var(--muted);
   --font-playfair: var(--font-playfair);
   --font-lora: var(--font-lora);
+  --font-cormorant: var(--font-cormorant);
 }
 
 body {

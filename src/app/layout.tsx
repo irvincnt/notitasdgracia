@@ -1,6 +1,6 @@
 import { Analytics } from "@vercel/analytics/next";
 import type { Metadata } from "next";
-import { Lora, Playfair_Display } from "next/font/google";
+import { Cormorant_Garamond, Lora, Playfair_Display } from "next/font/google";
 import Link from "next/link";
 import ThemeToggle from "./components/theme-toggle";
 import "./globals.css";
@@ -18,7 +18,15 @@ const lora = Lora({
   style: ["normal", "italic"],
 });
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://notitasdegracia.com";
+const cormorant = Cormorant_Garamond({
+  variable: "--font-cormorant",
+  subsets: ["latin"],
+  weight: ["500", "600"],
+  style: ["italic"],
+});
+
+const siteUrl =
+  process.env.NEXT_PUBLIC_SITE_URL ?? "https://notitasdegracia.com";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -71,7 +79,7 @@ export default function RootLayout({
         />
       </head>
       <body
-        className={`${playfair.variable} ${lora.variable} antialiased bg-background`}
+        className={`${playfair.variable} ${lora.variable} ${cormorant.variable} antialiased bg-background`}
       >
         {/* Header */}
         <header className="bg-background/90 backdrop-blur-md sticky top-0 z-50 border-b border-border">
