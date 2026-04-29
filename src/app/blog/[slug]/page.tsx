@@ -59,7 +59,7 @@ export default async function BlogPostPage({ params }: BlogPostPageProps) {
   const mdxComponents = useMDXComponents();
 
   return (
-    <MdxLayout metadata={metadata}>
+    <MdxLayout metadata={metadata} slug={slug}>
       <PostContent components={mdxComponents} />
     </MdxLayout>
   );

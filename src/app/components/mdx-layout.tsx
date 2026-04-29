@@ -1,10 +1,12 @@
 import Image from "next/image";
 import Link from "next/link";
-import { formatPostDate } from "@/lib/date";
+import SelectionTrigger from "@/app/components/quote-share/selection-trigger";
 import SharePost from "@/app/components/share-post";
+import { formatPostDate } from "@/lib/date";
 
 interface MdxLayoutProps {
   children: React.ReactNode;
+  slug?: string;
   metadata?: {
     title?: string;
     description?: string;
@@ -15,7 +17,11 @@ interface MdxLayoutProps {
   };
 }
 
-export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
+export default function MdxLayout({
+  children,
+  metadata,
+  slug,
+}: MdxLayoutProps) {
   const hasHeroImage = Boolean(metadata?.image);
 
   return (
@@ -148,6 +154,8 @@ export default function MdxLayout({ children, metadata }: MdxLayoutProps) {
 
         <SharePost />
       </div>
+
+      {slug && <SelectionTrigger title={metadata?.title ?? ""} slug={slug} />}
     </article>
   );
 }
