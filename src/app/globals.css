@@ -66,35 +66,34 @@ html {
   color: var(--foreground);
 }
 
+.article-prose :where(ul, ol) {
+  margin: 1.25rem 0;
+  padding-left: 1.35rem;
+}
+
+.article-prose :where(ul, ol) li {
+  margin: 0.35rem 0;
+  padding-left: 0.25rem;
+}
+
+.article-prose :where(ul, ol) li::marker {
+  color: color-mix(in srgb, var(--gold-dark) 58%, var(--muted));
+}
+
 .article-prose ul {
-  list-style: none;
-  padding-left: 0;
-  margin: 1.5rem 0;
-  display: grid;
-  gap: 0.65rem;
+  list-style: disc;
 }
 
-.article-prose ul li {
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
-  margin: 0;
-  padding: 0.7rem 0.95rem;
-  border: 1px solid var(--border);
-  border-radius: 0.85rem;
-  background-color: color-mix(in srgb, var(--cream) 70%, transparent);
+.article-prose ul li::marker {
+  font-size: 0.72em;
 }
 
-.article-prose ul li::before {
-  content: "";
-  flex: 0 0 auto;
-  width: 0.5rem;
-  height: 0.5rem;
-  border-radius: 999px;
-  background-color: color-mix(in srgb, var(--gold-dark) 75%, white);
+.article-prose ol li::marker {
+  font-size: 0.9em;
+  font-weight: 500;
 }
 
-.article-prose ul li > p {
+.article-prose :where(ul, ol) li > p {
   margin: 0;
 }
 
