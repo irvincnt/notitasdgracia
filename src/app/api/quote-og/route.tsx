@@ -89,6 +89,7 @@ export async function GET(request: NextRequest) {
   }
 
   const title = sanitizeText(searchParams.get("title") ?? "");
+  const author = sanitizeText(searchParams.get("author") ?? "");
   const bg = parseBg(searchParams.get("bg"));
   const ratio = parseRatio(searchParams.get("ratio"));
 
@@ -114,7 +115,9 @@ export async function GET(request: NextRequest) {
         flexDirection: "column",
         justifyContent: "space-between",
         backgroundColor: colors.bg,
-        backgroundImage: colors.backgroundImage,
+        ...(colors.backgroundImage
+          ? { backgroundImage: colors.backgroundImage }
+          : {}),
         padding: dims.padding,
         fontFamily: "Inter",
       }}
@@ -180,6 +183,18 @@ export async function GET(request: NextRequest) {
             }}
           >
             {title}
+          </div>
+        )}
+        {author && (
+          <div
+            style={{
+              fontSize: 20,
+              color: colors.muted,
+              lineHeight: 1.3,
+              opacity: 0.64,
+            }}
+          >
+            {author}
           </div>
         )}
         <div
