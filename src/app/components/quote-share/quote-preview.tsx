@@ -6,6 +6,7 @@ export type RatioVariant = "vertical" | "instagram" | "square";
 interface QuotePreviewProps {
   quote: string;
   title: string;
+  author?: string;
   bg: BgVariant;
   ratio: RatioVariant;
   domain: string;
@@ -59,6 +60,7 @@ const RATIO_ASPECTS: Record<RatioVariant, string> = {
 export default function QuotePreview({
   quote,
   title,
+  author = "",
   bg,
   ratio,
   domain,
@@ -120,6 +122,18 @@ export default function QuotePreview({
               }}
             >
               {title}
+            </div>
+          )}
+          {author && (
+            <div
+              style={{
+                color: colors.muted,
+                fontSize: "clamp(7px, 1.4cqw, 14px)",
+                lineHeight: 1.3,
+                opacity: 0.64,
+              }}
+            >
+              {author}
             </div>
           )}
           <div

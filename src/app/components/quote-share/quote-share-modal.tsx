@@ -10,6 +10,7 @@ import QuotePreview, {
 interface QuoteShareModalProps {
   quote: string;
   title: string;
+  author?: string;
   slug: string;
   onClose: () => void;
 }
@@ -41,6 +42,7 @@ function getDomain(): string {
 export default function QuoteShareModal({
   quote,
   title,
+  author = "",
   slug,
   onClose,
 }: QuoteShareModalProps) {
@@ -87,6 +89,7 @@ export default function QuoteShareModal({
       const params = new URLSearchParams({
         text: quote,
         title,
+        author,
         slug,
         bg,
         ratio,
@@ -107,7 +110,7 @@ export default function QuoteShareModal({
     } finally {
       setDownloading(false);
     }
-  }, [quote, title, slug, bg, ratio]);
+  }, [quote, title, author, slug, bg, ratio]);
 
   if (!mounted) return null;
 
@@ -159,6 +162,7 @@ export default function QuoteShareModal({
             <QuotePreview
               quote={quote}
               title={title}
+              author={author}
               bg={bg}
               ratio={ratio}
               domain={domain.toUpperCase()}
